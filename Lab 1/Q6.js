@@ -28,7 +28,7 @@ const OrderJson = [
 function CopyOrderJson(orderJSON)
 {
   var CopiedOrderJSON = [];
-  for (let i = 0; i < orderJSON.length; i++)
+  for (var i = 0; i < orderJSON.length; i++)
   {
     var copiedObject = JSON.parse(JSON.stringify(orderJSON[i]));
     CopiedOrderJSON.push(copiedObject);
@@ -41,7 +41,7 @@ function FormattingItems(Items)
 {
   var ItemsAndQuantities =  Items.split(',');
   var sum = 0;
-  for(let i = 0; i < ItemsAndQuantities.length; i++)
+  for(var i = 0; i < ItemsAndQuantities.length; i++)
   {
 
       var quantityPerItem = ItemsAndQuantities[i].split(':')[1];

@@ -1,6 +1,6 @@
 function isPalindrome(str) {
-    let j = str.length - 1
-    for (let i = 0; i < str.length / 2; i++) {
+    var j = str.length - 1
+    for (var i = 0; i < str.length / 2; i++) {
         if (str[i] != str[j]) {
             return false;
         }
@@ -9,10 +9,10 @@ function isPalindrome(str) {
     return true;
 }
 
-const str = "EEaEE";
-const str2 = "";
-const str3 = "e";
-const str4 = "esraa";
+var str = "EEaEE";
+var str2 = "";
+var str3 = "e";
+var str4 = "esraa";
 console.log(isPalindrome(str));
 console.log(isPalindrome(str2));
 console.log(isPalindrome(str3));

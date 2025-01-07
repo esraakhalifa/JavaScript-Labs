@@ -1,9 +1,9 @@
 function FindLongestWord(sentence)
 {
-    let max = 0;
+    var max = 0;
     var LongestWord;
     words = sentence.split(' ');
-    for (let i = 0; i < words.length; i++)
+    for (var i = 0; i < words.length; i++)
     {
         if (words[i].length > max) 
         {

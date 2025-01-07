@@ -1,8 +1,8 @@
-let FavoriteMovies = ['P.S.: I love you.', 'Failure to launch', 'Monalisa smile', "My bestfriend's wedding"];
+var FavoriteMovies = ['P.S.: I love you.', 'Failure to launch', 'Monalisa smile', "My bestfriend's wedding"];
 
 console.log(FavoriteMovies);
 
-let favouriteMovies = FavoriteMovies;
+var favouriteMovies = FavoriteMovies;
 favouriteMovies[2] = "Two weeks notice";
 
 console.log(favouriteMovies[3]);
