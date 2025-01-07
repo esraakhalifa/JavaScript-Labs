@@ -175,12 +175,6 @@ var filteredTasks = tasks.filter(function(task){
     && new Date() > new Date(task.dueAT))
 })
 //console.log(filteredTasks)
-
-
-var lateUsersIds = filteredTasks.map(function(task){
-    return task.assignedTo;
-})
-
 console.log(lateUsersIds);
 var usersWithLateTasks = users.filter(function(user)
 {

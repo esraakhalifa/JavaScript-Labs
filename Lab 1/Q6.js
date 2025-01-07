@@ -25,29 +25,93 @@ const OrderJson = [
     }
   ];
 
-var OrdersWithItemsFormatted = OrderJson.map(function(order)
+function CopyOrderJson(orderJSON)
 {
-  //return order.items.split(',').split(':');
-  var items = order.items.split(",");
-  var quantities = [];
-  for (let i = 0; i < items.length; i++)
+  var CopiedOrderJSON = [];
+  for (let i = 0; i < orderJSON.length; i++)
   {
-    quantities.push(items[i].split(":")[1]) ;
+    var copiedObject = JSON.parse(JSON.stringify(orderJSON[i]));
+    CopiedOrderJSON.push(copiedObject);
   }
+  return CopiedOrderJSON;
+}
+var CopiedOrderJSON = CopyOrderJson(OrderJson);
+
+function FormattingItems(Items)
+{
+  var ItemsAndQuantities =  Items.split(',');
   var sum = 0;
+  for(let i = 0; i < ItemsAndQuantities.length; i++)
+  {
 
-  var quantities = quantities.map(function(quantity){
-    sum+=parseInt(quantity);
-    return sum;
-  })
-  console.log(quantities);
-  
+      var quantityPerItem = ItemsAndQuantities[i].split(':')[1];
+      sum+= Number(quantityPerItem);
 
-})
+  }
+  return sum;
+}
 
-//console.log(OrdersWithItemsFormatted);
+var OrderJsonFormattedItems = CopiedOrderJSON.map(
+  function(order){
+    order.items = FormattingItems(order.items);
+    return order;
+  }
+)
+//console.log(OrderJsonFormattedItems);
 
-/**
- * 
- */
+function FormattingDeliveryDuration(orderDate,deliveryDate)
+{
+  var OrderDate = new Date(orderDate);
+  var DeliveryDate = new Date(deliveryDate);
+  var deliveryDuration = (DeliveryDate-OrderDate)/(1000*60*60*24);
+
+  return deliveryDuration;
+
+}
+var OrderJSONFormattedDeliveryDuration = CopiedOrderJSON.map(
+  function(order)
+  {
+    order.deliveryDuration = FormattingDeliveryDuration(order.orderDate,order.deliveryDate) + " days";
+    delete order.orderDate;
+    delete order.deliveryDate;
+    return order;
+  }
+)
+//console.log(OrderJSONFormattedDeliveryDuration);
+//console.log(OrderJson);
+
+function FormattingAddress(deliveryAddress)
+{
+  var AddressSpecifications = deliveryAddress.split(',');
+  var buildingNumberAsString = AddressSpecifications[0];
+  if (Number(AddressSpecifications[0])) 
+  {
+    AddressSpecifications[0] = Number(AddressSpecifications[0]);
+  }
+  else{
+    AddressSpecifications[0] = buildingNumberAsString;
+  }
+ 
+  //if(AddressSpecifications)
+  return AddressSpecifications;
+}
+var OrderJsonFormattedItemsDeliveryAndAddress = CopiedOrderJSON.map(
+  function(order)
+  {
+    var formattedDeliveryAddress = FormattingAddress(order.deliveryAddress);
+    order.deliveryCountry = formattedDeliveryAddress[3];
+    order.deliveryCity = formattedDeliveryAddress[2];
+    order.deliveryStreet = formattedDeliveryAddress[1];
+    order.buildingNumber = formattedDeliveryAddress[0];
+    delete order.deliveryAddress;
+    return order;
+  }
+)
+
+console.log(OrderJson);
+console.log(OrderJsonFormattedItemsDeliveryAndAddress);
+
+
+
+
 
