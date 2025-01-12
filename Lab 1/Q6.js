@@ -25,7 +25,7 @@ const OrderJson = [
     }
   ];
 
-function CopyOrderJson(orderJSON)
+function CopyOrderJson(orderJSON) // two other ways
 {
   var CopiedOrderJSON = [];
   for (var i = 0; i < orderJSON.length; i++)
@@ -35,6 +35,7 @@ function CopyOrderJson(orderJSON)
   }
   return CopiedOrderJSON;
 }
+
 var CopiedOrderJSON = CopyOrderJson(OrderJson);
 
 function FormattingItems(Items)
@@ -51,7 +52,7 @@ function FormattingItems(Items)
   return sum;
 }
 
-var OrderJsonFormattedItems = CopiedOrderJSON.map(
+var OrderJsonFormattedItems = CopiedOrderJSON.map( // reduce badal map, search
   function(order){
     order.items = FormattingItems(order.items);
     return order;
@@ -59,7 +60,7 @@ var OrderJsonFormattedItems = CopiedOrderJSON.map(
 )
 //console.log(OrderJsonFormattedItems);
 
-function FormattingDeliveryDuration(orderDate,deliveryDate)
+function FormattingDeliveryDuration(orderDate,deliveryDate) // 
 {
   var OrderDate = new Date(orderDate);
   var DeliveryDate = new Date(deliveryDate);
@@ -90,7 +91,7 @@ function FormattingAddress(deliveryAddress)
   }
   else{
     AddressSpecifications[0] = buildingNumberAsString;
-  }
+  } 
  
   //if(AddressSpecifications)
   return AddressSpecifications;

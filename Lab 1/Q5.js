@@ -9,6 +9,7 @@ function DisplayNameAndGrades() {
     return;
     
 }
+// validations and calculating average
 DisplayNameAndGrades();
 
 //console.log(DisplayGradesAsTable('Esraa', '90,50,30,10'));
