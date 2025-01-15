@@ -4,10 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Hangman Game </title>
     <link rel="stylesheet" href="style.css">
-    <script src="scripts/word-list.js" defer></script>
-    <script src="scripts/script.js" defer></script>
+    <script type="module" src="scripts/word-list.js" defer></script>
+    <script type="module" src="scripts/script.js" defer></script>
+    <script type="module" src="scripts/app.js" defer></script>
+    
+    
 </head>
 <body>
+
+    <div class="hangman-game-name">
+        <img src="nature.png" alt="a"  class="svg-letter">
+        <span class="letter">H</span>
+        <span class="letter">A</span>
+        <span class="letter">N</span>
+        <span class="letter">G</span>
+        <span class="letter">M</span>
+        <span class="letter">A</span>
+        <span class="letter">N</span>
+        <img src="nature.png" alt="a"  class="svg-letter">
+    </div>
     <div class="game-modal">
         <div class="content">
             <img src="Images/lost.gif" alt="gif">
@@ -17,48 +32,33 @@
         </div>
         </div>
     </div>
-    <div class="container">
+    <div class="categories"></div>
+    <div class="container" >
+        
         <div class="hangman-box">
             <img src="Images/hangman-0.svg" alt="hangman-img">
-            <h1>Hangman Game</h1>
+            
         </div>
         <div class="game-box">
             <ul class="word-display"></ul>
-            <h4 class="hint-text">
-                Hint:
-                <b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, dicta rem, iste beatae nihil sit aspernatur architecto pariatur molestias maiores libero! Minima nisi odio recusandae molestias illum, repudiandae ratione perferendis!</b>
+            
+            
+                
+                <div class="hint-text">
+                    <h4>
+                    
+                    <b></b>
+                </div>
+
+            
             </h4>
             <h4 class="guesses-text">
                 Incorrect guesses:
-            <b>0 / 6</b>            
+            <b>0 / 6</b>  
+            <p>Timer: <b class="timer-text">30</b> seconds remaining</p>          
             </h4>
             <div class="keyboard">
-                <button>a</button>
-                <button>b</button>
-                <button>c</button>
-                <button>d</button>
-                <button>e</button>
-                <button>f</button>
-                <button>g</button>
-                <button>h</button>
-                <button>i</button>
-                <button>j</button>
-                <button>k</button>
-                <button>l</button>
-                <button>m</button>
-                <button>n</button>
-                <button>o</button>
-                <button>p</button>
-                <button>q</button>
-                <button>r</button>
-                <button>s</button>
-                <button>t</button>
-                <button>u</button>
-                <button>v</button>
-                <button>w</button>
-                <button>x</button>
-                <button>y</button>
-                <button>z</button>
+
             </div>
         </div>
 
