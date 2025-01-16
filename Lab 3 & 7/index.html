@@ -34,12 +34,18 @@
     </div>
     <div class="categories"></div>
     <div class="container" >
-        
-        <div class="hangman-box">
-            <img src="Images/hangman-0.svg" alt="hangman-img">
+        <div></div>
+        <div class="hangman-box" >
+            <img src="Images/hangman-0.svg" alt="hangman-img" style="display: none;">
             
         </div>
-        <div class="game-box">
+        <div class="dropdown">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-content">
+            </div>
+          </div>
+        <div style="display: none;" class="game-box">
+
             <ul class="word-display"></ul>
             
             
@@ -47,6 +53,10 @@
                 <div class="hint-text">
                     <h4>
                     
+                    <b></b>
+                </div>
+                <div class="additional-hint" style="display: none;">
+                    <h4>Hint:</h4>
                     <b></b>
                 </div>
 

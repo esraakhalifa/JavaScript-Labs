@@ -1,16 +1,23 @@
 import {guessTimeLimit, maxGuesses} from './constants.js';
 
 import { wordList } from './word-list.js';
+
+import { initKeyboard , keyboardDiv} from './app.js';
 var wordDisplay = document.querySelector(".word-display");
-export var keyboardDiv = document.querySelector(".keyboard");
 var guessesText = document.querySelector(".guesses-text b");
 var hangmanImage = document.querySelector(".hangman-box img");
 var timerText = document.querySelector(".timer-text");
+const gameBox = document.querySelector('.game-box');
+const categoriesButton = document.querySelector(".dropdown");
+const categoriesDropdownMenu = document.querySelector('.dropdown-content');
+const gameModal = document.querySelector('.game-modal');
+const categoryLinks = [];
 var currentWord = "";
 var wrongGuessesCount = 0;
 let timerInterval;
 var remainingTime = guessTimeLimit;
 let correctLetters;
+let chosenCategory;
 
 
 const resetGame = ()=>
@@ -25,15 +32,21 @@ const resetGame = ()=>
     keyboardDiv.querySelectorAll("button").forEach(button => button.disabled = false);
     
 }
-export var getRandomWord = () => {
+export function getRandomWord(chosenCategory){
 
-    var { word, hint } = wordList[Math.floor(Math.random() * wordList.length)];
+    var { word, hint,additionalHint } = wordList[chosenCategory][Math.floor(Math.random() * wordList[chosenCategory].length)];
     currentWord = word.toLowerCase(); 
     console.log(word); 
     document.querySelector(".hint-text b").innerText = hint;
     wordDisplay.innerHTML = word.split("").map(() => "<li class='letter'></li>").join("");
     resetGame();
-};
+}
+
+function showHint(additionalHint)
+{
+    document.querySelector(".additional-hint b").innerText = additionalHint;
+
+}
 
 
 export var initGame = (button) => {
@@ -89,12 +102,50 @@ var gameResult = (isWinning) => {
     clearInterval(timerInterval);
     if (isWinning) {
         alert("Congratulations! You guessed the word!");
+        
     } else {
         alert(`Game Over! The word was "${currentWord}".`);
+
     }
-    getRandomWord(); 
+    categoriesButton.style.display = 'block';
+    categoriesDropdownMenu.style.display = 'block';
+    
+    gameBox.style.display = 'none';
+    hangmanImage.style.display = 'none';
+    keyboardDiv.innerHTML = '';
+    selectCategory();
+    getRandomWord(chosenCategory); 
 };
 
 
 
-getRandomWord();
+//getRandomWord(chosenCategory);
+
+function selectCategory(){
+    
+    Object.keys(wordList).forEach(category => {
+        const categoryLink = document.createElement('a');
+        categoryLink.href = '#';
+        categoryLink.textContent = category;
+        categoriesDropdownMenu.appendChild(categoryLink);
+        categoryLinks.push(categoryLink);
+        
+        categoryLink.addEventListener('click', () => {
+            chosenCategory = category;
+            console.log(`Chosen category: ${chosenCategory}`);
+            categoriesButton.style.display = 'none';
+            categoriesDropdownMenu.style.display = 'none';
+            
+            // Display the game box
+            gameBox.style.display = 'block';
+            hangmanImage.style.display = 'block';
+    
+            // Initialize the game
+            initKeyboard();
+            getRandomWord(chosenCategory);
+            
+        });
+    });
+}
+
+selectCategory();
